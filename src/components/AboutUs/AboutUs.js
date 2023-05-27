@@ -8,7 +8,7 @@ function AboutUs() {
             <div className='about'>
                 <h1 >What's  special about our Website?!</h1>
                 <div className='details'>
-                    <img src={TodoList} />
+                    <img src={TodoList} alt='TodoList'/>
                     <div className='par'>
                         <h2>Task<span className='genius'>Genius</span></h2>
                         <p>*At Task Genius, we understand the importance of staying organized and being productive in today's fast-paced world. Our website is dedicated to providing you with a reliable and user-friendly platform that helps you effectively manage some choosen tasks and accomplish some goals</p>
