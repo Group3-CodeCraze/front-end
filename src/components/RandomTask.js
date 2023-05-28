@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import TaskModel from "./TaskModel";
-import Spinner from 'react-bootstrap/Spinner';
+
 
 function RandomTask() {
 
@@ -79,7 +79,6 @@ function RandomTask() {
                     <option value="social">social</option>
                     <option value="recreational">recreational</option>
                     <option value="charity">charity</option>
-
                 </Form.Select>
                 <Button type="submit" onClick={() => { handelshow(generate) }}>submit</Button>
             </Form>
