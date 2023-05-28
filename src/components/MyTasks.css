@@ -1,0 +1,33 @@
+h1 {
+    color: azure;
+    text-align: center;
+}
+
+.tasks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tasks>div {
+    margin: 10px;
+    min-width: 300px;
+    max-width: 400px;
+    transition: transform 0.3s;
+}
+
+.card {
+    width: 100%;
+    color: black;
+    height: 20rem;
+    text-align: center;
+}
+
+.title {
+    color: #27374D;
+    font-size: 30px;
+}
+
+.tasks>div:hover {
+    transform: scale(1.05);
+}
