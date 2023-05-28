@@ -3,7 +3,9 @@ import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import TaskModel from "./TaskModel";
-import Spinner from 'react-bootstrap/Spinner';
+
+
+
 
 function RandomTask() {
 
@@ -72,14 +74,17 @@ function RandomTask() {
         <>
 
             <Form onSubmit={genTask}>
-                <Form.Select onChange={handelSelectedValue} aria-label="Default select example" className="fs-3">
+                <Form.Select onChange={handelSelectedValue}  className="fs-3"style={{ maxWidth: "50%",
+                margin:" 0 auto",
+                marginTop: "30px",
+                borderRadius: "50px",
+    backgroundColor: "azure"}}>
                     <option value="none" >Please select type</option>
                     <option value="music"  >music</option>
                     <option value="education">education</option>
                     <option value="social">social</option>
                     <option value="recreational">recreational</option>
                     <option value="charity">charity</option>
-
                 </Form.Select>
                 <Button type="submit" onClick={() => { handelshow(generate) }}>submit</Button>
             </Form>
