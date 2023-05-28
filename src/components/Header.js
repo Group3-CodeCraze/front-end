@@ -12,6 +12,7 @@ function Header (){
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/AboutUS">AboutUS</Nav.Link>
             <Nav.Link href="/RandomTask">RandomTask</Nav.Link>
+            <Nav.Link href="/MyTasks">MyTasks</Nav.Link>
             
           </Nav>
         </Container>

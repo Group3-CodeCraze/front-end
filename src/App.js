@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Home from './components/Home'
 import Footer from './components/Footer';
 import RandomTask from './components/RandomTask';
+import MyTasks from './components/MyTasks';
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
       <Route path='/' element={<Home/>}></Route>
       <Route path='/AboutUS' element={<AboutUs/>}></Route>
       <Route path='/RandomTask' element={<RandomTask/>}></Route>
+      <Route path='/MyTasks' element={<MyTasks/>}></Route>
+
     </Routes>
     <Footer/>
     
