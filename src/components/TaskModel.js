@@ -8,8 +8,22 @@ import Form from 'react-bootstrap/Form';
 
 function TaskModel(props) {
 
+    const getDefaultDate = () => {
+        const today = new Date();
+        today.setDate(today.getDate() + 2);
+        const year = today.getFullYear();
+        let month = today.getMonth() + 1;
+        let day = today.getDate();
+
+
+        month = month < 10 ? `0${month}` : month;
+        day = day < 10 ? `0${day}` : day;
+
+        return `${year}-${month}-${day}`;
+    };
+
     const sendToDbHandler = (e) => {
-          e.preventDefault()
+        e.preventDefault()
         const obj = {
             task_type: e.target.title.value,
             due_date: e.target.date.value,
@@ -59,7 +73,7 @@ function TaskModel(props) {
                             <Form.Label>task</Form.Label>
                             <Form.Control type="text" name="task" defaultValue={props.generate} />
                             <Form.Label>due</Form.Label>
-                            <Form.Control type="date" name="date" defaultValue={""} />
+                            <Form.Control type="date" name="date" defaultValue={getDefaultDate()} />
                             <Form.Label>comment</Form.Label>
                             <Form.Control type="text" name="comment" defaultValue={""} />
                         </Form.Group>
