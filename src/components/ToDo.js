@@ -13,10 +13,13 @@ import {
   MDBIcon,
   MDBTooltip
 } from "mdb-react-ui-kit";
+import EditeModal from "./EditeModal";
 
 export default function App() {
+
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const addTask = () => {
     if (newTask.trim() !== "") {
@@ -25,6 +28,8 @@ export default function App() {
     }
   };
 
+ 
+  
   const deleteTask = (index) => {
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
@@ -38,7 +43,16 @@ export default function App() {
     setTasks(updatedTasks);
   };
 
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
   return (
+    <>
     <section className="vh-100" style={{ backgroundColor: "#9AA5B1" }}>
       <MDBContainer className="py-5 h-100" style={{ backgroundColor: "#9AA5B1" }}>
         <MDBRow className="d-flex justify-content-center align-items-center">
@@ -72,7 +86,7 @@ export default function App() {
                     <tr>
                       <th scope="col">No.</th>
                       <th scope="col">Todo item</th>
-                      <th scope="col">Status</th>
+                      
                       <th scope="col">Actions</th>
                     </tr>
                   </MDBTableHead>
@@ -81,7 +95,7 @@ export default function App() {
                       <tr key={index}>
                         <th scope="row">{index + 1}</th>
                         <td className="task-content" style={{ fontSize: '20px', fontWeight: "500" }}>{task}</td>
-                        <td>In progress</td>
+                        
                         <td>
 
                           <MDBTooltip tag='a' wrapperProps={{ href: '#' }} title="Delete Task">
@@ -90,8 +104,9 @@ export default function App() {
                               style={{ color: "red", paddingLeft: "8px", paddingRight: "8px" }} />
                           </MDBTooltip>
 
-                          <MDBTooltip tag='a' wrapperProps={{ href: '#' }} title="Edite Task">
+                          <MDBTooltip tag='a' wrapperProps={{ href: '#' }} title="Edit Task">
                             <MDBIcon fas icon="edit" size='xl'
+                            onClick={handleShowModal}
                               style={{ color: "", paddingLeft: "8px", paddingRight: "8px" }} />
                           </MDBTooltip>
 
@@ -113,5 +128,8 @@ export default function App() {
         </MDBRow>
       </MDBContainer>
     </section>
-  );
+    
+  <EditeModal show={showModal} handleClose={handleCloseModal} />
+  </>   
+   );
 }
