@@ -1,7 +1,8 @@
 import './login.css';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import { AuthContext } from '../../AuthContext';
 
 function Login() {
 
@@ -16,7 +17,7 @@ function Login() {
   const [sucess, setSignupMessage] = useState('');
   const [wrongMessage, setSignInMessage] = useState('');
 
-
+  const { login } = useContext(AuthContext);
 
 
   // use state for login  
@@ -29,7 +30,9 @@ function Login() {
       const result = await axios.post(serverURL, { username, password });
       if (result.data.username) {
         setSignInUsername(result.data.username);
-        navigate('/', {
+        localStorage.setItem("username", username)
+        login(username)
+        navigate('/home/', {
           replace: true,
           state: { username: username }
         });
