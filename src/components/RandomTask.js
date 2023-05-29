@@ -6,6 +6,8 @@ import TaskModel from "./TaskModel";
 import './RandomTask.css'
 
 
+
+
 function RandomTask() {
 
     const [generate, setgenerate] = useState("");
@@ -77,6 +79,7 @@ function RandomTask() {
     return (
         <>
             <Form onSubmit={genTask}>
+<<<<<<< HEAD
                 <div className='dropdown-container'>
 
                     <Form.Select onChange={handelSelectedValue} aria-label="Default select example" className='select'>
@@ -95,6 +98,25 @@ function RandomTask() {
             </Form>
 
             <TaskModel showFlag={showFlag} handelshow={handelshow} handelclose={handelclose} generate={generate} selectedValue={selectedValue} />
+=======
+                <Form.Select onChange={handelSelectedValue}  className="fs-3"style={{ maxWidth: "50%",
+                margin:" 0 auto",
+                marginTop: "30px",
+                borderRadius: "50px",
+    backgroundColor: "azure"}}>
+                    <option value="none" >Please select type</option>
+                    <option value="music"  >music</option>
+                    <option value="education">education</option>
+                    <option value="social">social</option>
+                    <option value="recreational">recreational</option>
+                    <option value="charity">charity</option>
+                </Form.Select>
+                <Button type="submit" onClick={() => { handelshow(generate) }}>submit</Button>
+            </Form>
+
+            <TaskModel showFlag={showFlag} handelshow={handelshow} handelclose={handelclose} generate={generate}  selectedValue={selectedValue} />
+            
+>>>>>>> 9b1ec0a8873d2530dc1d892d037ba203740dab84
         </>
     )
 
