@@ -1,42 +1,87 @@
-import {Modal,Button , Form} from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal';
+import { Card } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import axios from 'axios';
 
-function EditeModal (props) {
-  return (
-    <>
-    <Modal show={props.show} onHide={props.handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="name@example.com"
-                autoFocus
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={props.handleClose}>
-            Close
+import Form from 'react-bootstrap/Form';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../AuthContext';
+
+
+
+function EditModal(props) {
+  const [renderdata,setrenderdata]=useState([])
+  const {username}=useContext(AuthContext);
+
+  const getDefaultDate = () => {
+    const today = new Date();
+    today.setDate(today.getDate() + 2);
+    const year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    let day = today.getDate();
+
+
+    month = month < 10 ? `0${month}` : month;
+    day = day < 10 ? `0${day}` : day;
+
+    return `${year}-${month}-${day}`;
+};
+
+
+  const sendToDbHandler = (e) => {
+    e.preventDefault()
+    const obj = {
+      username:username,
+      task_type: e.target.title.value,
+      due_date: e.target.date.value,
+      activity: e.target.task.value,
+      comments: e.target.comment.value
+    }
+    console.log(obj)
+    const serverURL = `http://localhost:3000/addtask`
+    axios.post(serverURL, obj).then(data=>{
+      const serverURL = `http://localhost:3000/gettasks`
+      axios.get(serverURL).then(data=>{
+           props.fromModal(data.data)
+      })
+
+    })
+    props.handelclose()
+  }
+ 
+ 
+  return <>
+    <Modal show={props.showFlag} onHide={props.handelclose} >
+      <Modal.Header closeButton>
+      </Modal.Header>
+      <Modal.Body>
+        <Form  onSubmit={sendToDbHandler}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>task type</Form.Label>
+            <Form.Control type="text" name="title" defaultValue={""} />
+            <Form.Label>task</Form.Label>
+            <Form.Control type="text" name="task" defaultValue={""} />
+            <Form.Label>due</Form.Label>
+
+            <Form.Control type="date" name="date" defaultValue={getDefaultDate( )} />
+
+            <Form.Label>comment</Form.Label>
+            <Form.Control type="text" name="comment" defaultValue={""} />
+          </Form.Group>
+          <Button variant="primary" type="submit" >
+            Submit
           </Button>
-          <Button variant="primary" onClick={props.handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-      </>
-  );
+        </Form>
+
+      </Modal.Body>
+
+      <Modal.Footer>
+        <Button variant="secondary" onClick={props.handelclose} >
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  </>
 }
 
-export default EditeModal;
+export default EditModal

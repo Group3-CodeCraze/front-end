@@ -4,10 +4,12 @@ import Button from "react-bootstrap/Button";
 import axios from 'axios';
 
 import Form from 'react-bootstrap/Form';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthContext';
 
 
 function TaskModel(props) {
-
+    const {username}=useContext(AuthContext)
     const getDefaultDate = () => {
         const today = new Date();
         today.setDate(today.getDate() + 2);
@@ -25,6 +27,7 @@ function TaskModel(props) {
     const sendToDbHandler = (e) => {
         e.preventDefault()
         const obj = {
+            username:username,
             task_type: e.target.title.value,
             due_date: e.target.date.value,
             activity: e.target.task.value,
