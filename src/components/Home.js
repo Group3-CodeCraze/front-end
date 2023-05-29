@@ -1,12 +1,14 @@
-import { useLocation } from "react-router-dom";
+import React, { useContext } from 'react';
+import { AuthContext } from '../AuthContext';
 
 function Home() {
-    const { state } = useLocation();
+  const { username } = useContext(AuthContext);
 
-    return <>
-        {state ? (<h1>Home Page {state.username}</h1>) : (<h1>Home Page</h1>)}
-
+  return (
+    <>
+      <h1>Hello {username}</h1>
     </>
+  );
 }
 
-export default Home
+export default Home;

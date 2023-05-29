@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Card from 'react-bootstrap/Card';
 import './MyTasks.css'
+import { AuthContext } from "../AuthContext";
 
 function MyTasks() {
-
+    const { username } = useContext(AuthContext);
     const [tasks, setTasks] = useState([]);
 
     const getTasks = () => {
