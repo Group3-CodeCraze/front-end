@@ -21,6 +21,7 @@ function App() {
           <Route path="/AboutUs" element={<AboutUs />} />
           <Route path="/RandomTask" element={<RandomTask />} />
           <Route path="/MyTasks" element={<MyTasks />} />
+          
           <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
