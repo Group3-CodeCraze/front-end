@@ -5,6 +5,8 @@ import Form from 'react-bootstrap/Form';
 import TaskModel from "./TaskModel";
 
 
+
+
 function RandomTask() {
 
     const [generate, setgenerate] = useState("");
@@ -72,7 +74,11 @@ function RandomTask() {
         <>
 
             <Form onSubmit={genTask}>
-                <Form.Select onChange={handelSelectedValue} aria-label="Default select example" className="fs-3">
+                <Form.Select onChange={handelSelectedValue}  className="fs-3"style={{ maxWidth: "50%",
+                margin:" 0 auto",
+                marginTop: "30px",
+                borderRadius: "50px",
+    backgroundColor: "azure"}}>
                     <option value="none" >Please select type</option>
                     <option value="music"  >music</option>
                     <option value="education">education</option>

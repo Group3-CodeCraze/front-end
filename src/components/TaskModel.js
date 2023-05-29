@@ -73,7 +73,9 @@ function TaskModel(props) {
                             <Form.Label>task</Form.Label>
                             <Form.Control type="text" name="task" defaultValue={props.generate} />
                             <Form.Label>due</Form.Label>
+
                             <Form.Control type="date" name="date" defaultValue={getDefaultDate()} />
+
                             <Form.Label>comment</Form.Label>
                             <Form.Control type="text" name="comment" defaultValue={""} />
                         </Form.Group>
