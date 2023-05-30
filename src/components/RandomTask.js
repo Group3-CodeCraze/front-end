@@ -45,7 +45,7 @@ function RandomTask() {
     };
 
     const generateRandom = (type) => {
-        const serverURL = `http://localhost:3000/randomTask/${type}`;
+        const serverURL = `${process.env.REACT_APP_serverURL}/randomTask/${type}`;
         axios.get(serverURL)
             .then(response => {
                 console.log(response.data);

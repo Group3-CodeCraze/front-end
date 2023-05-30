@@ -42,9 +42,9 @@ function MyTasks() {
     const handelclose = () => {
         setShowFlag(false);
     };
-
+    
     const getTasks = () => {
-        const URL = `http://localhost:3000/gettasks?username=${username}`;
+        const URL = `${process.env.REACT_APP_serverURL}/gettasks?username=${username}`;
         axios.get(URL).then((response) => {
             setTasks(response.data);
         });
@@ -64,7 +64,7 @@ function MyTasks() {
 
     // }
     const submithandler = async (itemId) => {
-        const serverURL = `http://localhost:3000/updateGenTasks/${itemId}`;
+        const serverURL = `${process.env.REACT_APP_serverURL}/updateGenTasks/${itemId}`;
         const updatedTasks = tasks.map((task) => {
           if (task.id === itemId) {
             const updatedTask = { ...task, is_completed: !task.is_completed };
@@ -77,10 +77,10 @@ function MyTasks() {
       };
     const deleteItem = (item) => {
 
-        const serverURL = `http://localhost:3000/deleteTask/${item.id}`
+        const serverURL = `${process.env.REACT_APP_serverURL}/deleteTask/${item.id}`
         axios.delete(serverURL)
             .then(data => {
-                const serverURL = `http://localhost:3000/gettasks`
+                const serverURL = `${process.env.REACT_APP_serverURL}/gettasks`
                 axios.get(serverURL)
                     .then(data => {
                         setUpdatedData(data.data)

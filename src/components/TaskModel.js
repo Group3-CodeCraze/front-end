@@ -35,7 +35,7 @@ function TaskModel(props) {
             is_complete : false
         }
         console.log(obj)
-        const serverURL = `http://localhost:3000/addtask`
+        const serverURL = `${process.env.REACT_APP_serverURL}/addtask`
         axios.post(serverURL, obj)
         props.handelclose()
     }
