@@ -1,6 +1,9 @@
+
+
+import './RandomTask.css';
 import axios from "axios";
 import Button from "react-bootstrap/Button";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import TaskModel from "./TaskModel";
 
@@ -73,7 +76,7 @@ function RandomTask() {
     return (
         <>
 
-            <Form onSubmit={genTask}>
+            <Form onSubmit={genTask} style={{backgroundColor:"none"}}>
                 <Form.Select onChange={handelSelectedValue}  className="fs-3"style={{ maxWidth: "50%",
                 margin:" 0 auto",
                 marginTop: "30px",
