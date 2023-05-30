@@ -56,16 +56,16 @@
   }
   
   .uniqBt:hover,.uniqBt:focus {
-    color: #ffffff;
-    background: #008cff;
-    border: 1px solid #008cff;
+    color: #123;
+    background: #BECFCE;
+    border: 1px solid #BECFCE;
     text-shadow: 0 0 5px #ffffff,
                 0 0 10px #ffffff,
                 0 0 20px #ffffff;
-    box-shadow: 0 0 5px #008cff,
-                0 0 20px #008cff,
-                0 0 50px #008cff,
-                0 0 100px #008cff;
+    box-shadow: 0 0 5px #BECFCE,
+                0 0 20px #BECFCE,
+                0 0 50px #BECFCE,
+                0 0 100px #BECFCE;
   }
   h3 {
     font-size: 4rem !important;
@@ -80,4 +80,9 @@
     padding-bottom: 1.25rem;
     color: #fff;
     text-align: center;
+}
+
+.navbar { 
+  background: linear-gradient(to right,#7C9695,#516868,#BECFCE);
+  
 }

@@ -31,7 +31,8 @@ function TaskModel(props) {
             task_type: e.target.title.value,
             due_date: e.target.date.value,
             activity: e.target.task.value,
-            comments: e.target.comment.value
+            comments: e.target.comment.value,
+            is_complete : false
         }
         console.log(obj)
         const serverURL = `http://localhost:3000/addtask`
