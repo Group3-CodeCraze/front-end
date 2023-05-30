@@ -1,5 +1,3 @@
-
-
 import './RandomTask.css';
 import axios from "axios";
 import Button from "react-bootstrap/Button";
@@ -7,9 +5,6 @@ import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import TaskModel from "./TaskModel";
 import './RandomTask.css'
-
-
-
 
 function RandomTask() {
 
@@ -39,16 +34,10 @@ function RandomTask() {
         let image = '';
         image = require(`./${selectedOption}.jpg`);
         document.body.style.backgroundImage = `url(${image})`;
-
         document.body.style.backgroundPosition = 'center'
         const value = e.target.value;
-
         setSelectedValue(value);
-
     }
-
-
-
     const genTask = (e) => {
         if (selectedValue === "") {
             e.preventDefault()
@@ -106,8 +95,8 @@ function RandomTask() {
 
             <TaskModel showFlag={showFlag} handelshow={handelshow} handelclose={handelclose} generate={generate} selectedValue={selectedValue} />
 
-              
-            
+
+
 
         </>
     )
