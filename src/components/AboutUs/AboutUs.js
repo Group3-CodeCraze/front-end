@@ -51,7 +51,7 @@ function AboutUs() {
 
                         <img src={member.photoUrl} alt={member.photoUrl} />
                         <br />
-                        <a href={member.github} target='blank'><i id='github' class="fa-brands fa-github"></i></a>
+                        <a href={member.github} target='blank'><i id='github' className="fa-brands fa-github"></i></a>
                     </div>
                 ))}
             </div>

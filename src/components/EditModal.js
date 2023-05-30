@@ -28,7 +28,7 @@ function EditModal(props) {
 };
 
 
-  const sendToDbHandler = (e) => {
+  const sendToDbHandler = async (e) => {
     e.preventDefault()
     const obj = {
       username:username,
@@ -38,9 +38,9 @@ function EditModal(props) {
       comments: e.target.comment.value
     }
     console.log(obj)
-    const serverURL = `http://localhost:3000/addtask`
-    axios.post(serverURL, obj).then(data=>{
-      const serverURL = `http://localhost:3000/gettasks`
+    const serverURL = `${process.env.REACT_APP_serverURL}/addtask`
+    await axios.post(serverURL, obj).then(data=>{
+      const serverURL = `${process.env.REACT_APP_serverURL}/gettasks`
       axios.get(serverURL).then(data=>{
            props.fromModal(data.data)
       })
@@ -63,7 +63,7 @@ function EditModal(props) {
             <Form.Control type="text" name="task" defaultValue={""} />
             <Form.Label>due</Form.Label>
 
-            <Form.Control type="date" name="date" defaultValue={getDefaultDate( )} />
+            <Form.Control type="date" name="date" defaultValue={getDefaultDate()} />
 
             <Form.Label>comment</Form.Label>
             <Form.Control type="text" name="comment" defaultValue={""} />

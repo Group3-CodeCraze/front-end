@@ -1,116 +1,84 @@
-
-
 import './RandomTask.css';
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import TaskModel from "./TaskModel";
-import './RandomTask.css'
-
-
-
+import './RandomTask.css';
 
 function RandomTask() {
-
     const [generate, setgenerate] = useState("");
     const [selectedValue, setSelectedValue] = useState("");
 
-
-    const [showFlag, setShowFlag] = useState(false)
-
-
+    const [showFlag, setShowFlag] = useState(false);
 
     const handelshow = () => {
-        setShowFlag(true)
-    }
+        setShowFlag(true);
+    };
 
     const handelclose = () => {
+        setShowFlag(false);
+        setgenerate("");
+    };
 
-        setShowFlag(false)
-        setgenerate(null)
-
-    }
-
-
-
-    const handelSelectedValue = (e) => {
-        const selectedOption = e.target.value;
+    const handelSelectedValue = (event) => {
+        const selectedOption = event.target.value;
+        const formDiv = document.getElementById('form');
         let image = '';
-        image = require(`./${selectedOption}.jpg`);
-        document.body.style.backgroundImage = `url(${image})`;
-
-        document.body.style.backgroundPosition = 'center'
-        const value = e.target.value;
-
-        setSelectedValue(value);
-
-    }
+        if (selectedOption !== "none") {
+            image = require(`./${selectedOption}.jpg`);
+        }
+        formDiv.style.backgroundImage = selectedOption !== "none" ? `url(${image})` : "none";
+        formDiv.style.backgroundPosition = 'center';
+        formDiv.style.backgroundSize = 'cover';
+        formDiv.style.backgroundRepeat = 'no-repeat';
+        setSelectedValue(selectedOption);
+    };
 
     const genTask = (e) => {
-        if (selectedValue === "") {
-            e.preventDefault()
-            setgenerate("please select type")
+        e.preventDefault();
+        if (selectedValue === "none") {
+            setgenerate("Please select a type");
         } else {
-            e.preventDefault()
-
-            generateRandom(selectedValue)
+            generateRandom(selectedValue);
         }
-
-
-
-    }
+    };
 
     const generateRandom = (type) => {
-
-        console.log(selectedValue)
-        const serverURL = `http://localhost:3000/randomTask/${type}`
-
+        const serverURL = `${process.env.REACT_APP_serverURL}/randomTask/${type}`;
         axios.get(serverURL)
             .then(response => {
-
-                console.log(response.data)
-                setgenerate(response.data.activity)
+                console.log(response.data);
+                setgenerate(response.data.activity);
             })
             .catch(error => {
-                console.log(error)
-            })
-    }
-
-
+                console.log(error);
+            });
+    };
 
     return (
         <>
-
-
+            <div  id='form'>
             <Form onSubmit={genTask} className='randomForm'>
-
                 <div className='dropdown-container'>
-
-                    <Form.Select onChange={handelSelectedValue} aria-label="Default select example" className='select'>
-                        <option value="none" >Please select type</option>
-                        <option value="music"  >music</option>
+                    <select onChange={handelSelectedValue} aria-label="Default select example" className='select'>
+                        <option value="none">Please select a type</option>
+                        <option value="music">music</option>
                         <option value="education">education</option>
                         <option value="social">social</option>
                         <option value="recreational">recreational</option>
                         <option value="charity">charity</option>
-                    </Form.Select>
+                    </select>
                     <div className="button-container">
-                        <Button className="button" type="submit" onClick={() => { handelshow(generate) }}>Submit</Button>
+                        <Button className="button btn-generate" type="submit" onClick={handelshow}>Submit</Button>
                     </div>
                 </div>
-
             </Form>
+            </div>
 
             <TaskModel showFlag={showFlag} handelshow={handelshow} handelclose={handelclose} generate={generate} selectedValue={selectedValue} />
-
-              
-            
-
         </>
-    )
-
-
+    );
 }
 
-export default RandomTask
+export default RandomTask;

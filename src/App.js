@@ -23,6 +23,7 @@ function App() {
           <Route path="/MyTasks" element={<MyTasks />} />
           
           <Route path="/login" element={<Login />} />
+
         </Routes>
         <Footer />
       </AuthProvider>

@@ -1,11 +1,11 @@
-
-
 import { useContext, useEffect, useState } from "react";
-import Form from 'react-bootstrap/Form';
 import './MyTasks.css';
 import { AuthContext } from "../AuthContext";
-import { Button, Table } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
+import Table from 'react-bootstrap/Table';
+
 import EditModal from "./EditModal";
+import TaskCalendar from "./calendar/TaskCalendar";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -31,12 +31,6 @@ function MyTasks() {
     const [tasks, setTasks] = useState([]);
     const [iscompleted, setiscompleted] = useState(false);
 
-    const handleClick = () => {
-    //   setColor('red');
-    };
- 
-    
-  
     const handelshow = () => {
         setShowFlag(true);
     };
@@ -48,95 +42,123 @@ function MyTasks() {
     const handelclose = () => {
         setShowFlag(false);
     };
-
-
-
-
+    
     const getTasks = () => {
-        const URL = `http://localhost:3000/gettasks?username=${username}`;
+        const URL = `${process.env.REACT_APP_serverURL}/gettasks?username=${username}`;
         axios.get(URL).then((response) => {
             setTasks(response.data);
         });
     };
-    
-    const submithandler = async (item) => {
-        setiscompleted(true)
-        
-        const serverURL = 
-        `http://localhost:3000/updateGenTasks/${item.id}`
-        const obj={
-            ...item,
-            is_completed:iscompleted
-        };
 
-        const result = await axios.put(serverURL,obj )
-        console.log(result.data)
+    // const submithandler = async (item) => {
+    //     setiscompleted(true)
 
-    }
+    //     const serverURL =
+    //         `http://localhost:3000/updateGenTasks/${item.id}`
+    //     const obj = {
+    //         ...item,
+    //         is_completed: iscompleted
+    //     };
 
-     
-   
+    //     const result = await axios.put(serverURL, obj)
 
+    // }
+    const submithandler = async (itemId) => {
+        const serverURL = `${process.env.REACT_APP_serverURL}/updateGenTasks/${itemId}`;
+        const updatedTasks = tasks.map((task) => {
+          if (task.id === itemId) {
+            const updatedTask = { ...task, is_completed: !task.is_completed };
+            axios.put(serverURL, updatedTask);
+            return updatedTask;
+          }
+          return task;
+        });
+        setTasks(updatedTasks);
+      };
     const deleteItem = (item) => {
 
-        const serverURL = `http://localhost:3000/deleteTask/${item.id}`
+        const serverURL = `${process.env.REACT_APP_serverURL}/deleteTask/${item.id}`
         axios.delete(serverURL)
             .then(data => {
-                const serverURL = `http://localhost:3000/gettasks`
+                const serverURL = `${process.env.REACT_APP_serverURL}/gettasks`
                 axios.get(serverURL)
                     .then(data => {
                         setUpdatedData(data.data)
-
-
                     })
             })
 
     }
 
-
-
-
-
-
     useEffect(() => {
         setUpdatedData(tasks);
         getTasks();
-
     }, [tasks, username]);
 
     return (
-        <>
-            <h1>My Tasks</h1>
-            <Button style={{ position: "relative", left: "46%", marginBottom: "10px" ,background:" transparent"}} onClick={handelshow}> add</Button>
+        <div className="main-todo-container" style={{ backgroundColor: "#9AA5B1" }}>
 
-            {updatedData.map((item, index) => (
+            <MDBContainer className="py-5" style={{ backgroundColor: "#9AA5B1" }}>
+                <MDBRow className="d-flex justify-content-center align-items-center">
+                    <MDBCol lg="9" xl="7">
+                        <MDBCard className="rounded-3" style={{ height: "100%" }}>
+                            <MDBCardBody className="p-4">
+                                <h4 className="text-center my-3 pb-3">To Do App</h4>
+                                <MDBRow className="row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+                                    <MDBCol size="12">
+                                        <MDBBtn type="submit" onClick={handelshow}>
+                                            Add Task
+                                        </MDBBtn>
+                                    </MDBCol>
+                                </MDBRow>
+                                <div className="table-container">
+                                    <MDBTable className="mb-4" responsive>
+                                        <MDBTableHead>
+                                            <tr>
+                                                <th scope="col">No.</th>
+                                                <th scope="col">Todo item</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </MDBTableHead>
+                                        <MDBTableBody>
+                                        {updatedData.map((item, index) => (
+                                        <tr key={index}>
+                                            <th scope="row">{index + 1}</th>
+                                            <td className={`task-content ${item.is_completed ? 'completed' : ''}`}>
+                                                {item.activity}
+                                            </td>
+                                            <td>
+                                            <MDBTooltip tag='a' wrapperProps={{ href: '#' }} title="Delete Task">
+                                                            <MDBIcon fas icon="trash-alt" size='xl'
+                                                                onClick={() => deleteItem(item)}
+                                                                style={{ color: "red", paddingLeft: "8px", paddingRight: "8px" }} />
+                                                        </MDBTooltip>
+                                                <MDBTooltip tag='a' wrapperProps={{ href: '#' }} title="Done">
+                                                    <MDBIcon
+                                                        far
+                                                        icon="check-circle"
+                                                        size='xl'
+                                                        onClick={() => { submithandler(item.id) }}
+                                                        style={{ color: "green", paddingLeft: "8px", paddingRight: "8px" }}
+                                                    />
+                                                </MDBTooltip>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                    
+                                </MDBTableBody>
+                            </MDBTable>
+                        </div>
+                    </MDBCardBody>
+                </MDBCard>
+            </MDBCol>
+        </MDBRow>
+            </MDBContainer >
 
-                <div className="taskCont" key={index} >
-                    <div style={{ color: "white" }}>
-                        {item.activity}</div>
-                                      <div>
-
-                    <span >
-                    <i data-fa-symbol="favorite" class="fas fa-star fa-fw" style={{ color:item.is_completed?"green":"red" }} onClick={()=>{submithandler(item)}} ></i> 
-                        </span>
-                        
-                        <span onClick={() => deleteItem(item)}>
-                            <FontAwesomeIcon className="trash" icon={faTrash} />
-                        </span>
-
-                    </div>
-
-
-                </div>
-
-
-            ))}
-
-
+            <TaskCalendar />
             <EditModal showFlag={showFlag} handelshow={handelshow} handelclose={handelclose} fromModal={fromModal} />
-        </>
+        </div >
+
     );
 }
 
-export default MyTasks
-
+export default MyTasks;
