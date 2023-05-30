@@ -76,10 +76,11 @@ function RandomTask() {
     return (
         <>
 
-            <Form onSubmit={genTask} style={{backgroundColor:"none"}}>
+            <Form onSubmit={genTask} className='randomForm'>
                 <Form.Select onChange={handelSelectedValue}  className="fs-3"style={{ maxWidth: "50%",
                 margin:" 0 auto",
                 marginTop: "30px",
+                marginBottom: "10px",
                 borderRadius: "50px",
     backgroundColor: "azure"}}>
                     <option value="none" >Please select type</option>

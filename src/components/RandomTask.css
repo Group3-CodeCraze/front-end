@@ -15,6 +15,10 @@ body {
     align-items: center;
     padding-top: 70px;
     height: 100vh;
+    
+}
+.randomForm{
+    background-color: transparent !important;
 }
 
 .select {
@@ -27,6 +31,7 @@ body {
     border-radius: 50px;
     border: 1px solid #ccc;
     animation: dropdownAnimation 1s infinite alternate;
+    
 }
 
 .button-container {

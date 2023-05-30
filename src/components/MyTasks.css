@@ -36,10 +36,23 @@ h1 {
     text-align: left;
     margin-right: 10px;
 }
-
+.taskForm{
+    background-color: transparent !important;
+}
 
 .taskCont{
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+}
+
+.trash{
+    color:#be1212;
+}
+
+span{
+    margin-left: 10px;
 }
 
   
