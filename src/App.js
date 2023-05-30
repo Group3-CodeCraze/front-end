@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import AboutUs from './components/AboutUs/AboutUs';
+import Header from './components/Header';
+import Home from './components/Home';
+import Footer from './components/Footer';
+import RandomTask from './components/RandomTask';
+import MyTasks from './components/MyTasks';
+import Login from './components/login/login.js';
+import { AuthProvider } from './AuthContext';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AuthProvider>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/AboutUs" element={<AboutUs />} />
+          <Route path="/RandomTask" element={<RandomTask />} />
+          <Route path="/MyTasks" element={<MyTasks />} />
+          
+          <Route path="/login" element={<Login />} />
+        </Routes>
+        <Footer />
+      </AuthProvider>
+    </>
   );
 }
 
