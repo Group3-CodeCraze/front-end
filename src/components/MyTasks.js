@@ -1,99 +1,14 @@
-// import { useContext, useEffect, useState } from "react";
-// import Card from 'react-bootstrap/Card'; import './MyTasks.css'
-// import { AuthContext } from "../AuthContext";
-// import { Button } from "react-bootstrap";
-// import EditModal from "./EditModal";
-// import axios from "axios";
-// import ReactCardFlip from "react-card-flip";
 
 
-
-// function MyTasks() {
-
-//     const [updatedData, setUpdatedData] = useState([])
-
-//     const [showFlag, setShowFlag] = useState(false)
-
-//     const [flip, setFlip] = useState(false);
-
-
-
-//     const handelshow = () => {
-//         setShowFlag(true)
-//     }
-
-
-//     const fromModal = (newModal) => {
-//         setUpdatedData(newModal)
-//     }
-//     const { username } = useContext(AuthContext);
-//     const [tasks, setTasks] = useState([]);
-
-
-//     const handelclose = () => {
-
-//         setShowFlag(false)
-
-
-//     }
-
-//     const getTasks = () => {
-//         const URL = `http://localhost:3000/gettasks?username=${username}`
-//         axios.get(URL)
-//             .then((response) => {
-
-//                 setTasks(response.data)
-
-
-//             })
-//     }
-
-//     const markAsFinished = (index) => {
-//         const updatedTasks = [...tasks];
-//         updatedTasks[index] = (
-//             <span style={{ color: "green", textDecoration: 'line-through' }}>{updatedTasks[index]}</span>
-//         );
-//         setTasks(updatedTasks);
-//     };
-
-//     useEffect(() => {
-//         setUpdatedData(tasks)
-//         getTasks()
-//     }, [tasks], [username])
-
-
-
-
-
-//     return (
-//         <>
-
-//             <h1 >My Tasks</h1>
-//             <Button style={{ position: "relative", left: "46%" }} onClick={handelshow}> +</Button>
-
-//             <div className="tasks">
-//                 {updatedData.map((item) => {
-//                     return <>
-
-
-//                     </>
-
-//                 })}
-//             </div>
-
-//             <EditModal showFlag={showFlag} handelshow={handelshow} handelclose={handelclose} fromModal={fromModal} />
-
-//         </>
-//     )
-// }
-// export default MyTasks;
 import { useContext, useEffect, useState } from "react";
-import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
 import './MyTasks.css';
 import { AuthContext } from "../AuthContext";
 import { Button, Table } from "react-bootstrap";
 import EditModal from "./EditModal";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import {
     MDBBtn,
     MDBCard,
@@ -114,7 +29,14 @@ function MyTasks() {
     const [showFlag, setShowFlag] = useState(false);
     const { username } = useContext(AuthContext);
     const [tasks, setTasks] = useState([]);
+    const [iscompleted, setiscompleted] = useState(false);
 
+    const handleClick = () => {
+    //   setColor('red');
+    };
+ 
+    
+  
     const handelshow = () => {
         setShowFlag(true);
     };
@@ -127,65 +49,88 @@ function MyTasks() {
         setShowFlag(false);
     };
 
+
+
+
     const getTasks = () => {
         const URL = `http://localhost:3000/gettasks?username=${username}`;
         axios.get(URL).then((response) => {
             setTasks(response.data);
         });
     };
+    
+    const submithandler = async (item) => {
+        setiscompleted(true)
+        
+        const serverURL = 
+        `http://localhost:3000/updateGenTasks/${item.id}`
+        const obj={
+            ...item,
+            is_completed:iscompleted
+        };
 
-    const markAsFinished = (index) => {
-        const updatedTasks = [...tasks];
-        updatedTasks[index] = (
-            <span style={{ color: "green", textDecoration: "line-through" }}>
-                {updatedTasks[index]}
-            </span>
-        );
-        setTasks(updatedTasks);
-    };
+        const result = await axios.put(serverURL,obj )
+        console.log(result.data)
+
+    }
+
+     
+   
+
+    const deleteItem = (item) => {
+
+        const serverURL = `http://localhost:3000/deleteTask/${item.id}`
+        axios.delete(serverURL)
+            .then(data => {
+                const serverURL = `http://localhost:3000/gettasks`
+                axios.get(serverURL)
+                    .then(data => {
+                        setUpdatedData(data.data)
+
+
+                    })
+            })
+
+    }
+
+
+
+
+
 
     useEffect(() => {
         setUpdatedData(tasks);
         getTasks();
+
     }, [tasks, username]);
 
     return (
         <>
+            <h1>My Tasks</h1>
+            <Button style={{ position: "relative", left: "46%", marginBottom: "10px" ,background:" transparent"}} onClick={handelshow}> add</Button>
 
-            <h1 >My Tasks</h1>
-            <Button style={{ position: "relative", left: "46%" ,marginBottom:"10px"}} onClick={handelshow}> +</Button>
-            <MDBTableBody>
-                {updatedData.map((item) => (
-                    <tr key={item.id}>
-                        <th scope="row">{item.id + 1}</th>
-                        <td className="task-content" style={{ fontSize: '20px', fontWeight: "500" }}>{item.activity}</td>
+            {updatedData.map((item, index) => (
 
-                        <td>
+                <div className="taskCont" key={index} >
+                    <div style={{ color: "white" }}>
+                        {item.activity}</div>
+                                      <div>
 
-                            <MDBTooltip tag='a' wrapperProps={{ href: '#' }} title="Delete Task">
-                                <MDBIcon fas icon="trash-alt" size='xl'
-                                    //   onClick={() => deleteTask(index)}
-                                    style={{ color: "red", paddingLeft: "8px", paddingRight: "8px" }} />
-                            </MDBTooltip>
+                    <span >
+                    <i data-fa-symbol="favorite" class="fas fa-star fa-fw" style={{ color:item.is_completed?"green":"red" }} onClick={()=>{submithandler(item)}} ></i> 
+                        </span>
+                        
+                        <span onClick={() => deleteItem(item)}>
+                            <FontAwesomeIcon className="trash" icon={faTrash} />
+                        </span>
 
-                            <MDBTooltip tag='a' wrapperProps={{ href: '#' }} title="Edit Task">
-                                <MDBIcon fas icon="edit" size='xl'
-                                    // onClick={handleShowModal}
-                                    style={{ color: "", paddingLeft: "8px", paddingRight: "8px" }} />
-                            </MDBTooltip>
+                    </div>
 
-                            <MDBTooltip tag='a' wrapperProps={{ href: '#' }} title="Done">
-                                <MDBIcon far icon="check-circle" size='xl'
-                                    onClick={() => markAsFinished(item.markAsFinished)}
-                                    style={{ color: "green", paddingLeft: "8px", paddingRight: "8px" }} />
 
-                            </MDBTooltip>
+                </div>
 
-                        </td>
-                    </tr>
-                ))}
-            </MDBTableBody>
 
+            ))}
 
 
             <EditModal showFlag={showFlag} handelshow={handelshow} handelclose={handelclose} fromModal={fromModal} />
@@ -193,4 +138,5 @@ function MyTasks() {
     );
 }
 
-export default MyTasks;
+export default MyTasks
+

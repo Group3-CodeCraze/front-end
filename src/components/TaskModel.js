@@ -74,7 +74,7 @@ function TaskModel(props) {
                             <Form.Label>task type</Form.Label>
                             <Form.Control type="text" name="title" defaultValue={props.selectedValue} />
                             <Form.Label>task</Form.Label>
-                            <Form.Control type="text" name="task" defaultValue={props.generate} />
+                            <Form.Control as="textarea" rows={3} name="task" defaultValue={props.generate} />
                             <Form.Label>due</Form.Label>
 
                             <Form.Control type="date" name="date" defaultValue={getDefaultDate()} />

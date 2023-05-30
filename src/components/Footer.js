@@ -6,7 +6,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 function Footer() {
     return <>
-        <Navbar bg="dark" variant="dark" fixed='bottom' >
+        <Navbar  variant="dark" fixed='bottom' >
             <Container style={{display:'flex',justifyContent:'space-between'}}>
                 <Navbar.Brand href="/">Task Genius</Navbar.Brand>
                 <Nav >

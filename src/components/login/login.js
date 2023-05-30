@@ -32,7 +32,7 @@ function Login() {
         setSignInUsername(result.data.username);
         localStorage.setItem("username", username)
         login(username)
-        navigate('/home/', {
+        navigate('/', {
           replace: true,
           state: { username: username }
         });

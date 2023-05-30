@@ -15,6 +15,12 @@ body {
     align-items: center;
     padding-top: 70px;
     height: 100vh;
+
+    
+}
+.randomForm{
+    background-color: transparent !important;
+
 }
 
 .select {
