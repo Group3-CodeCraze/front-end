@@ -215,10 +215,8 @@ const CalendarPage = () => {
       const response = await axios.get(
         process.env.REACT_APP_serverURL + '/getCalendarDate/' + username
       );
-      console.log(response.data);
       const datesWithTasks = response.data.map((item) => new Date(item.due_date));
       setCalendarData(datesWithTasks);
-      console.log(datesWithTasks);
     } catch (error) {
       console.error('Error fetching calendar data:', error);
     }
@@ -246,8 +244,6 @@ const CalendarPage = () => {
 
   const handleAdding = async (e) =>{
     e.preventDefault();
-    console.log(selectedDate);
-    console.log(username);
     const serverURL = `${process.env.REACT_APP_serverURL}/addtask`;
 
     const timezoneOffset = selectedDate.getTimezoneOffset();
@@ -258,7 +254,6 @@ const CalendarPage = () => {
     // Format the adjusted date
     const formattedDate = adjustedDate.toISOString().split('T')[0];
     
-    console.log(formattedDate);
 
     const obj ={ 
       username : username,
@@ -268,7 +263,6 @@ const CalendarPage = () => {
       comments : e.target.comments.value
     }
     const result = await axios.post(serverURL,obj)
-    console.log('inserted',result.data);
     handleModalClose();
 
 
@@ -278,13 +272,14 @@ const CalendarPage = () => {
       fetchCalendarData();
     }
     
+    
   }, [username, selectedDate]);
 
   return (
-    <Container>
+    <Container className='Calendar_box'>
       <Row>
         <Col>
-          <h1>Calendar</h1>
+          <h1 className='Calendar-Header'>Calendar</h1>
         </Col>
       </Row>
       <Row>

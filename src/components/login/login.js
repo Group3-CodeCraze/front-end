@@ -107,13 +107,16 @@ function Login() {
             {/* action="./login/login.php"  method="post" */}
             <h1>Sign in </h1>
             <span className='account_info'>use your acconut</span>
-            <input type="text" placeholder="Username" autoComplete="off" required autoFocus
+            <input className="input-login"type="text" placeholder="Username" autoComplete="off" required autoFocus
               value={username} onChange={(e) => { setSignInUsername(e.target.value) }} />
-            <input type="password" placeholder="Password" autoComplete="off" id="showpassword" required
+            <input className="input-login"type="password" placeholder="Password" autoComplete="off" id="showpassword" required
               value={password} onChange={(e) => { setSignInPassword(e.target.value) }} />
             {wrongMessage && <p className="error">
               {wrongMessage}</p>}
-            <button type='submit' name="signin" className='submit-btn'>Submit</button>
+              <input type="submit"
+              value="Sign Up"
+              name="submit"
+              className='submit-btn'></input>
           </form>
 
         </div>
@@ -123,15 +126,15 @@ function Login() {
             {/* action="./login/register.php" method="post" */}
             <h1>Sign Up</h1>
             <span className='account_info'>create Your Account</span>
-            <input type="text" name="username" placeholder="Username" autoComplete="off" required
+            <input className="input-login"type="text" name="username" placeholder="Username" autoComplete="off" required
               value={signUpUsername} onChange={(e) => { setSignUpUsername(e.target.value) }}
             />
 
-            <input type="email" name="email" placeholder="Email" autoComplete="off" required
+            <input className="input-login"type="email" name="email" placeholder="Email" autoComplete="off" required
               value={signUpEmail} onChange={(e) => { setSignUpEmail(e.target.value) }}
             />
 
-            <input type="password"
+            <input className="input-login"type="password"
               name="password"
               placeholder="Password"
               id="showpassword2"
@@ -145,8 +148,9 @@ function Login() {
 
 
             <input type="submit"
-              value="submit"
-              name="submit" className='submit-btn'></input>
+              value="LogIn"
+              name="submit"
+              className='submit-btn'></input>
 
 
           </form>

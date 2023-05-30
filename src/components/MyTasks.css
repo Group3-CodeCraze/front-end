@@ -1,8 +1,16 @@
-h1 {
-    color: azure;
+.tasks-H1 {
+    margin-top: 2rem;
+    color: #333;
     text-align: center;
-}
 
+}
+.main-todo-container{
+    
+    background-color: rgb(154, 165, 177);
+}
+.MyTaskPage{
+    background-color: #edede9;
+}
 .tasks {
     display: flex;
     flex-wrap: wrap;
@@ -15,7 +23,10 @@ h1 {
     max-width: 400px;
     transition: transform 0.3s;
 }
-
+.ripple {
+    background-color:  #526D82 !important;
+    font-size: 24px !important;
+}
 .card {
     width: 100%;
     color: black;
@@ -55,9 +66,36 @@ span{
     margin-left: 10px;
 }
 
+.main-todo-container{
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px;
+    
+}
+.Calendar_box {
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+}
+.Calendar_box{
+    width: 30% !important; 
+}
+
+.table-container {
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto;
+  }
   
-
-
-
-
- 
+  .completed {
+    color: green;
+    text-decoration: line-through;
+    
+  }
+  .task-content {
+    font-size: 20px;
+  }

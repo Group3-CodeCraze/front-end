@@ -7,11 +7,9 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Footer from './components/Footer';
 import RandomTask from './components/RandomTask';
-import ToDo from './components/ToDo'
 import MyTasks from './components/MyTasks';
 import Login from './components/login/login.js';
 import { AuthProvider } from './AuthContext';
-import TaskCalendar from './components/calendar/TaskCalendar';
 
 function App() {
   return (
@@ -25,8 +23,6 @@ function App() {
           <Route path="/MyTasks" element={<MyTasks />} />
           
           <Route path="/login" element={<Login />} />
-          <Route path='/CalendarTask' element={<TaskCalendar />} />
-          <Route path='/todo' element={<ToDo />} />
 
         </Routes>
         <Footer />

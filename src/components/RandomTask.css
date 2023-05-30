@@ -1,12 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-size: cover;
-}
 
 .dropdown-container {
     display: flex;
@@ -22,13 +13,16 @@ body {
     background-color: transparent !important;
 
 }
-
+#form {
+     background-color: rgb(154, 165, 177);
+}
 .select {
-    max-width: 500px;
+    max-width: 400px;
     padding: 10px;
-    font-size: 26px;
+    font-size: 24px;
     text-align: center;
-    background-color: #ccc;
+    color: #f2f2f2;
+    background-color:  #526D82;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-radius: 50px;
     border: 1px solid #ccc;
@@ -43,7 +37,7 @@ body {
     padding: 10px 40px;
     width: 100%;
     font-size: 20px;
-    background-color: #f44336;
+    background-color:  #526D82;
     color: #fff;
     border: none;
     border-radius: 50px;
@@ -52,9 +46,9 @@ body {
 }
 
 .button:hover {
-    background-color: #f44336;
+    background-color:  #526D82;
     animation: buttonHoverAnimation 1s infinite;
-    box-shadow: 0 0 10px 3px rgba(244, 67, 54, 0.5);
+    box-shadow: 0 0 10px 3px #526D82;
 }
 
 @keyframes buttonHoverAnimation {
@@ -64,7 +58,7 @@ body {
 
     50% {
         transform: scale(1.05);
-        box-shadow: 0 0 20px 8px rgba(244, 67, 54, 0.7);
+        box-shadow: 0 0 20px 8px #526D82;
     }
 
     100% {
@@ -74,19 +68,63 @@ body {
 
 @keyframes glowing {
     0% {
-        box-shadow: 0 0 5px rgba(244, 67, 54, 0.7);
+        box-shadow: 0 0 5px #526D82;
     }
 
     50% {
-        box-shadow: 0 0 20px rgba(244, 67, 54, 0.7);
+        box-shadow: 0 0 20px #526D82;
     }
 
     100% {
-        box-shadow: 0 0 5px rgba(244, 67, 54, 0.7);
+        box-shadow: 0 0 5px #526D82;
     }
 }
 
-.select:focus {
-    outline: none;
-    animation: glowing 1.5s infinite;
+.btn-generate{
+    border-radius: 20px !important;
+	background-color: #526D82 !important;
+	color: #FFFFFF !important;
+	font-size: 12px !important;
+	font-weight: bold !important;
+	padding: 12px 45px !important;
+	letter-spacing: 1px !important;
+	text-transform: uppercase !important;
+	transition: transform 80ms ease-in !important;
 }
+/* .custom-select {
+    position: relative;
+    display: inline-block;
+    width: 400px !important;
+    height: 40px;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #f1f1f1;
+    border: none;
+  }
+  
+  .custom-select select {
+    width: 100%;
+    height: 100%;
+    padding: 8px 12px;
+    font-size: 16px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+  }
+  
+  .custom-select select:focus {
+    box-shadow: 0 0 3px #2196F3;
+  }
+  
+  .custom-select::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #555;
+  } */
