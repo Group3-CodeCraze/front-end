@@ -34,6 +34,9 @@ function Header() {
             <Nav.Link as={Link} to="/MyTasks" className={location.pathname === '/MyTasks' ? 'active' : ''}>
               My Tasks
             </Nav.Link>
+            <Nav.Link as={Link} to="/CalendarTask" className={location.pathname === '/CalendarTask' ? 'active' : ''}>
+              CalendarTask
+            </Nav.Link>
             {username ? (
               <>
                 <Nav.Link>Hello {username}</Nav.Link>

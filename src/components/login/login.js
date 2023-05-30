@@ -113,7 +113,7 @@ function Login() {
               value={password} onChange={(e) => { setSignInPassword(e.target.value) }} />
             {wrongMessage && <p className="error">
               {wrongMessage}</p>}
-            <button type='submit' name="signin">Submit</button>
+            <button type='submit' name="signin" className='submit-btn'>Submit</button>
           </form>
 
         </div>
@@ -146,7 +146,7 @@ function Login() {
 
             <input type="submit"
               value="submit"
-              name="submit"></input>
+              name="submit" className='submit-btn'></input>
 
 
           </form>

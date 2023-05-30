@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import TaskModel from "./TaskModel";
+import './randomtask.css';
 
 
 
@@ -30,13 +31,19 @@ function RandomTask() {
 
 
 
-    const handelSelectedValue = (e) => {
-        
-        const value = e.target.value;
-       
-        setSelectedValue(value);
 
-    }
+        
+        const handelSelectedValue = (event) => {
+            const selectedOption = event.target.value;
+            const formDiv = document.getElementById('form');
+            let image = '';
+            image = require(`./${selectedOption}.jpg`);
+            formDiv.style.backgroundImage = `url(${image})`;
+            const value = event.target.value;
+            setSelectedValue(value);
+        }
+
+
 
     const genTask = (e) => {
         if(selectedValue ===""){
@@ -73,7 +80,7 @@ function RandomTask() {
     return (
         <>
 
-            <Form onSubmit={genTask}>
+            <Form onSubmit={genTask} id="form" style={{height:"80vh !important"}}>
                 <Form.Select onChange={handelSelectedValue}  className="fs-3"style={{ maxWidth: "50%",
                 margin:" 0 auto",
                 marginTop: "30px",
