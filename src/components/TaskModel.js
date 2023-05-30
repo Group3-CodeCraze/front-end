@@ -4,13 +4,30 @@ import Button from "react-bootstrap/Button";
 import axios from 'axios';
 
 import Form from 'react-bootstrap/Form';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthContext';
 
 
 function TaskModel(props) {
+    const {username}=useContext(AuthContext)
+    const getDefaultDate = () => {
+        const today = new Date();
+        today.setDate(today.getDate() + 2);
+        const year = today.getFullYear();
+        let month = today.getMonth() + 1;
+        let day = today.getDate();
+
+
+        month = month < 10 ? `0${month}` : month;
+        day = day < 10 ? `0${day}` : day;
+
+        return `${year}-${month}-${day}`;
+    };
 
     const sendToDbHandler = (e) => {
-          e.preventDefault()
+        e.preventDefault()
         const obj = {
+            username:username,
             task_type: e.target.title.value,
             due_date: e.target.date.value,
             activity: e.target.task.value,
@@ -57,9 +74,11 @@ function TaskModel(props) {
                             <Form.Label>task type</Form.Label>
                             <Form.Control type="text" name="title" defaultValue={props.selectedValue} />
                             <Form.Label>task</Form.Label>
-                            <Form.Control type="text" name="task" defaultValue={props.generate} />
+                            <Form.Control as="textarea" rows={3} name="task" defaultValue={props.generate} />
                             <Form.Label>due</Form.Label>
-                            <Form.Control type="date" name="date" defaultValue={""} />
+
+                            <Form.Control type="date" name="date" defaultValue={getDefaultDate()} />
+
                             <Form.Label>comment</Form.Label>
                             <Form.Control type="text" name="comment" defaultValue={""} />
                         </Form.Group>

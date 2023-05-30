@@ -2,7 +2,9 @@
 
 .login {
 	background-image: -webkit-linear-gradient(to right, #14213d, #e63946)!important;
-	background-image: linear-gradient(to right, #14213d, #e63946)!important;
+	/* background-image: linear-gradient(to right, #14213d, #e63946)!important; */
+	background-image: linear-gradient(to right, #27374D, #526D82) !important;
+
 	background-repeat: no-repeat!important;
 background-size: cover!important;
 background-attachment: fixed!important;
@@ -53,8 +55,9 @@ h2 {
 
 button.submit-btn , button.ghost {
 	border-radius: 20px !important;
-	border: 1px solid #FF4B2B!important;
-	background-color: #FF4B2B!important;
+	/* border: 1px solid #FF4B2B!important; */
+	/* background-color: #FF4B2B!important; */
+	background-color: #27374D !important;
 	color: #FFFFFF!important;
 	font-size: 12px!important;
 	font-weight: bold!important;
@@ -123,8 +126,9 @@ input {
 
 input[type="submit"]{
     border-radius: 20px!important;
-	border: 1px solid #FF4B2B!important;
-	background-color: #FF4B2B!important;
+	/* border: 1px solid #FF4B2B!important; */
+	/* background-color: #FF4B2B!important; */
+	background-color: #526D82 !important;
 	color: #FFFFFF!important;
 	font-size: 12px!important;
 	font-weight: bold!important;
@@ -136,7 +140,8 @@ input[type="submit"]{
 
 input[type="submit"]:hover 
 {
-    background-color: rgb(214, 80, 18)!important;
+    /* background-color: rgb(214, 80, 18)!important; */
+	background-color: #526D82 !important;
 }
 
 
@@ -249,7 +254,9 @@ a.logout:focus{
 .overlay {
 	background: #FF416C!important;
 	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C)!important;
-	background: linear-gradient(to right, #FF4B2B, #FF416C)!important;
+	/* background: linear-gradient(to right, #FF4B2B, #FF416C)!important; */
+	background-image: linear-gradient(to right, #27374D, #526D82)!important;
+
 	background-repeat: no-repeat!important;
 	background-size: cover!important;
 	background-position: 0 0!important;

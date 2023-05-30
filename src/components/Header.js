@@ -16,7 +16,7 @@ function Header() {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar  variant="dark">
         <Container>
           <Navbar.Brand as={Link} to="/">
             Task Genius
