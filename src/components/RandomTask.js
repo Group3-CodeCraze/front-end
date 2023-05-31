@@ -5,10 +5,18 @@ import { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import TaskModel from "./TaskModel";
 import './RandomTask.css';
+import { useContext} from "react";
+
+import { AuthContext } from "../AuthContext";
+
+
 
 function RandomTask() {
     const [generate, setgenerate] = useState("");
     const [selectedValue, setSelectedValue] = useState("");
+
+
+  const { username } = useContext(AuthContext);
 
     const [showFlag, setShowFlag] = useState(false);
 
@@ -36,7 +44,9 @@ function RandomTask() {
     };
 
     const genTask = (e) => {
+       
         e.preventDefault();
+     
         if (selectedValue === "none") {
             setgenerate("Please select a type");
         } else {

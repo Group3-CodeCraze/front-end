@@ -20,6 +20,7 @@ import {
   MDBInput,
 } from "mdb-react-ui-kit";
 import UpdateTaskModal from "./taskModal/UpdateTaskModal";
+import { Button, Card, Modal } from "react-bootstrap";
 
 function MyTasks() {
   const [updatedData, setUpdatedData] = useState([]);
@@ -32,6 +33,10 @@ function MyTasks() {
   const [clickedTask, setClickedTask] = useState({});
 
   const handelshow = () => {
+    if (!username){
+        return false;
+    }
+    
     setShowFlag(true);
   };
 
@@ -95,133 +100,137 @@ function MyTasks() {
     getTasks();
   }, [tasks, username]);
 
-  return (
+  return <>
+    { 
     <div className="main-todo-container" style={{ backgroundColor: "#9AA5B1" }}>
-      <MDBContainer className="py-5" style={{ backgroundColor: "#9AA5B1" }}>
-        <MDBRow className="d-flex justify-content-center align-items-center">
-          <MDBCol lg="9" xl="7">
-            <MDBCard className="rounded-3" style={{ height: "100%" }}>
-              <MDBCardBody className="p-4">
-                <h4 className="text-center my-3 pb-3">To Do App</h4>
-                <MDBRow className="row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
-                  <MDBCol size="12" lg="6">
-                    <MDBBtn type="submit" onClick={handelshow} fullWidth>
-                      Add Task
-                    </MDBBtn>
-                  </MDBCol>
-                  <MDBCol size="12" lg="6">
-                    <MDBInputGroup>
-                      <MDBInput
-                        label="Search"
-                        name="search"
-                        placeholder="Search for a Task"
-                        onChange={(e) => {
-                          setSearchQuery(e.target.value);
-                        }}
-                      />
-                    </MDBInputGroup>
-                  </MDBCol>
-                </MDBRow>
-                <div className="table-container">
-                  <MDBTable className="mb-4" responsive>
-                    <MDBTableHead>
-                      <tr>
-                        <th scope="col">No.</th>
-                        <th scope="col">Todo Activity</th>
-                        <th scope="col">Comments</th>
-                        <th scope="col">Actions</th>
+    <MDBContainer className="py-5" style={{ backgroundColor: "#9AA5B1" }}>
+      <MDBRow className="d-flex justify-content-center align-items-center">
+        <MDBCol lg="9" xl="7">
+          <MDBCard className="rounded-3" style={{ height: "100%" }}>
+            <MDBCardBody className="p-4">
+              <h4 className="text-center my-3 pb-3">To Do App</h4>
+              <MDBRow className="row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2">
+                <MDBCol size="12" lg="6">
+                  <MDBBtn type="submit" onClick={handelshow} fullWidth>
+                    Add Task
+                  </MDBBtn>
+                </MDBCol>
+                <MDBCol size="12" lg="6">
+                  <MDBInputGroup>
+                    <MDBInput
+                      label="Search"
+                      name="search"
+                      placeholder="Search for a Task"
+                      onChange={(e) => {
+                        setSearchQuery(e.target.value);
+                      }}
+                    />
+                  </MDBInputGroup>
+                </MDBCol>
+              </MDBRow>
+              <div className="table-container">
+                <MDBTable className="mb-4" responsive>
+                  <MDBTableHead>
+                    <tr>
+                      <th scope="col">No.</th>
+                      <th scope="col">Todo Activity</th>
+                      <th scope="col">Comments</th>
+                      <th scope="col">Actions</th>
+                    </tr>
+                  </MDBTableHead>
+                  <MDBTableBody>
+                    {updatedData.map((item, index) => (
+                      <tr key={index}>
+                        <th scope="row">{index + 1}</th>
+                        <td
+                          className={`task-content ${
+                            item.is_completed ? "completed" : ""
+                          }`}
+                        >
+                          {item.activity}
+                        </td>
+                        <td
+                          className={`task-content ${
+                            item.is_completed ? "completed" : ""
+                          }`}
+                        >
+                          {item.comments}
+                        </td>
+                        <td className="actions">
+                          <MDBTooltip tag="a" wrapperProps={{ href: "#" }} title="Delete Task">
+                            <MDBIcon
+                              fas
+                              icon="trash-alt"
+                              size="xl"
+                              onClick={() => deleteItem(item)}
+                              style={{
+                                color: "red",
+                                paddingLeft: "8px",
+                                paddingRight: "8px",
+                              }}
+                            />
+                          </MDBTooltip>
+                          <MDBTooltip tag="a" wrapperProps={{ href: "#" }} title="Edit Task">
+                            <MDBIcon
+                              fas
+                              icon="edit"
+                              size="xl"
+                              onClick={() => {
+                                handleUpdateModal(item);
+                              }}
+                              style={{
+                                color: "",
+                                paddingLeft: "8px",
+                                paddingRight: "8px",
+                              }}
+                            />
+                          </MDBTooltip>
+                          <MDBTooltip tag="a" wrapperProps={{ href: "#" }} title="Done">
+                            <MDBIcon
+                              far
+                              icon="check-circle"
+                              size="xl"
+                              onClick={() => {
+                                submithandler(item.id);
+                              }}
+                              style={{
+                                color: "green",
+                                paddingLeft: "8px",
+                                paddingRight: "8px",
+                              }}
+                            />
+                          </MDBTooltip>
+                        </td>
                       </tr>
-                    </MDBTableHead>
-                    <MDBTableBody>
-                      {updatedData.map((item, index) => (
-                        <tr key={index}>
-                          <th scope="row">{index + 1}</th>
-                          <td
-                            className={`task-content ${
-                              item.is_completed ? "completed" : ""
-                            }`}
-                          >
-                            {item.activity}
-                          </td>
-                          <td
-                            className={`task-content ${
-                              item.is_completed ? "completed" : ""
-                            }`}
-                          >
-                            {item.comments}
-                          </td>
-                          <td className="actions">
-                            <MDBTooltip tag="a" wrapperProps={{ href: "#" }} title="Delete Task">
-                              <MDBIcon
-                                fas
-                                icon="trash-alt"
-                                size="xl"
-                                onClick={() => deleteItem(item)}
-                                style={{
-                                  color: "red",
-                                  paddingLeft: "8px",
-                                  paddingRight: "8px",
-                                }}
-                              />
-                            </MDBTooltip>
-                            <MDBTooltip tag="a" wrapperProps={{ href: "#" }} title="Edit Task">
-                              <MDBIcon
-                                fas
-                                icon="edit"
-                                size="xl"
-                                onClick={() => {
-                                  handleUpdateModal(item);
-                                }}
-                                style={{
-                                  color: "",
-                                  paddingLeft: "8px",
-                                  paddingRight: "8px",
-                                }}
-                              />
-                            </MDBTooltip>
-                            <MDBTooltip tag="a" wrapperProps={{ href: "#" }} title="Done">
-                              <MDBIcon
-                                far
-                                icon="check-circle"
-                                size="xl"
-                                onClick={() => {
-                                  submithandler(item.id);
-                                }}
-                                style={{
-                                  color: "green",
-                                  paddingLeft: "8px",
-                                  paddingRight: "8px",
-                                }}
-                              />
-                            </MDBTooltip>
-                          </td>
-                        </tr>
-                      ))}
-                    </MDBTableBody>
-                  </MDBTable>
-                </div>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-      <UpdateTaskModal
-        showUpdateFlag={showUpdateFlag}
-        clickedTask={clickedTask}
-        handleCloseUpdateModal={handleCloseUpdateModal}
-        refreshData={refreshData}
-      />
-      <EditModal
-        showFlag={showFlag}
-        handelshow={handelshow}
-        handelclose={handelclose}
-        fromModal={fromModal}
-      />
-      <div className="task-calendar-container">
-        <TaskCalendar />
-      </div>
+                    ))}
+                  </MDBTableBody>
+                </MDBTable>
+              </div>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
+      </MDBRow>
+    </MDBContainer>
+    <UpdateTaskModal
+      showUpdateFlag={showUpdateFlag}
+      clickedTask={clickedTask}
+      handleCloseUpdateModal={handleCloseUpdateModal}
+      refreshData={refreshData}
+    />
+    <EditModal
+      showFlag={showFlag}
+      handelshow={handelshow}
+      handelclose={handelclose}
+      fromModal={fromModal}
+    />
+    <div className="task-calendar-container">
+      <TaskCalendar />
     </div>
-  );
+  </div>
+
+        
+        }
+        </>
 }
 
 export default MyTasks;
