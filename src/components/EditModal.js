@@ -38,9 +38,9 @@ function EditModal(props) {
       comments: e.target.comment.value
     }
     console.log(obj)
-    const serverURL = `http://localhost:3000/addtask`
+    const serverURL = `${process.env.REACT_APP_serverURL}/addtask`
     await axios.post(serverURL, obj).then(data=>{
-      const serverURL = `http://localhost:3000/gettasks`
+      const serverURL = `${process.env.REACT_APP_serverURL}/gettasks`
       axios.get(serverURL).then(data=>{
            props.fromModal(data.data)
       })
