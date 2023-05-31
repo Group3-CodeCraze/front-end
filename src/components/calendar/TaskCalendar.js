@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Modal, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
@@ -18,7 +17,7 @@ const CalendarPage = () => {
   const { username } = useContext(AuthContext);
 
 
-  
+
 
   const handleDayClick = async (date) => {
     if (!date) {
@@ -63,17 +62,17 @@ const CalendarPage = () => {
     const hasTask = calendarData.some(
       (calendarDate) => calendarDate.toISOString().split('T')[0] === dateString
     );
-  
+
     const isPastDate = date < currentDate;
     const isUpcomingDate = date > currentDate;
-  
+
     // Render the marker if there is a task for the current date (past or upcoming)
     return (
       <div className={`day-marker ${hasTask ? 'has-task' : ''} ${isPastDate ? 'past-date' : ''} ${isUpcomingDate ? 'upcoming-date' : ''}`}></div>
     );
   };
 
-  const handleAdding = async (e) =>{
+  const handleAdding = async (e) => {
     e.preventDefault();
     const serverURL = `${process.env.REACT_APP_serverURL}/addtask`;
 
@@ -81,19 +80,19 @@ const CalendarPage = () => {
 
     // Adjust the selected date by subtracting the offset
     const adjustedDate = new Date(selectedDate.getTime() - timezoneOffset * 60000);
-  
+
     // Format the adjusted date
     const formattedDate = adjustedDate.toISOString().split('T')[0];
-    
 
-    const obj ={ 
-      username : username,
-      task_type:e.target.task_type.value,
-      due_date : formattedDate,
-      activity : e.target.activity.value,
-      comments : e.target.comments.value
+
+    const obj = {
+      username: username,
+      task_type: e.target.task_type.value,
+      due_date: formattedDate,
+      activity: e.target.activity.value,
+      comments: e.target.comments.value
     }
-    const result = await axios.post(serverURL,obj)
+    const result = await axios.post(serverURL, obj)
     handleModalClose();
 
 
@@ -102,8 +101,6 @@ const CalendarPage = () => {
     if (username) {
       fetchCalendarData();
     }
-    
-    
   }, [username, selectedDate]);
 
   return (
@@ -115,7 +112,9 @@ const CalendarPage = () => {
       </Row>
       <Row>
         <Col>
-          <Calendar value={selectedDate} onClickDay={handleDayClick} tileContent={tileContent} />
+          <div className='task-calendar-container'>
+            <Calendar value={selectedDate} onClickDay={handleDayClick} tileContent={tileContent} />
+          </div>
         </Col>
       </Row>
 
@@ -139,18 +138,36 @@ const CalendarPage = () => {
           ) : (
             <>
               <p>No task available for this date.</p>
+              <p>Do you wanna add some tasks ?</p>
               <Form onSubmit={handleAdding}>
-              <input type='text' 
-               placeholder='Add a task Type'
-               name='task_type' />
-                <input type='text'
-               placeholder='Add a activity for this day' 
-               name='activity'
-               />
-              <input type='text'
-               placeholder='Add some comments'
-               name='comments' />
-              <Button type='submit'>Submit</Button>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                  <Form.Label>task_type</Form.Label>
+                  <Form.Control
+                    type='text'
+                    placeholder='Add a task Type'
+                    name='task_type'
+                    autoFocus
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                  <Form.Label>Activity</Form.Label>
+                  <Form.Control
+                    type='text'
+                    placeholder='Add a activity for this day'
+                    name='activity'
+                    autoFocus
+                  />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                  <Form.Label>task_type</Form.Label>
+                  <Form.Control
+                    type='text'
+                    placeholder='Add some comments'
+                    name='comments'
+                    autoFocus
+                  />
+                </Form.Group>
+                <Button type='submit'>Submit</Button>
               </Form>
             </>
 

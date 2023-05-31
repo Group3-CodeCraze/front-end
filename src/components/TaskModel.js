@@ -25,6 +25,9 @@ function TaskModel(props) {
     };
 
     const sendToDbHandler = (e) => {
+        if (!username){
+            <></>
+        }
         e.preventDefault()
         const obj = {
             username:username,
@@ -43,8 +46,9 @@ function TaskModel(props) {
 
 
     return <>
-
-        {props.selectedValue === "none" || props.selectedValue === "" ?
+    
+        {
+        props.selectedValue === "none" || props.selectedValue === "" || !username ?
             <Modal show={props.showFlag} onHide={props.handelclose} >
                 <Modal.Header closeButton>
                 </Modal.Header>
@@ -64,8 +68,8 @@ function TaskModel(props) {
                 </Modal.Footer>
             </Modal>
 
-            :
-
+            : 
+                
             <Modal show={props.showFlag} onHide={props.handelclose} >
                 <Modal.Header closeButton>
                 </Modal.Header>
