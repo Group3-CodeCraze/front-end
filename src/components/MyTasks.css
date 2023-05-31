@@ -62,10 +62,6 @@
     color:#be1212;
 }
 
-span{
-    margin-left: 10px;
-}
-
 .main-todo-container{
     height: 100vh;
     display: flex;
@@ -97,5 +93,24 @@ span{
     
   }
   .task-content {
-    font-size: 20px;
+    font-size: 15px;
+  }
+  @media only screen and (max-width: 980px) {
+    .main-todo-container {
+      flex-direction: column;
+      align-items: center;
+      height: auto;
+    }
+  }
+  .task-calendar-container {
+    height: 100%;
+    border: 1px solid #ccc;
+    float: right;
+    display: flex;
+    justify-content: first baseline;
+    margin:60px 20px 30px 20px ;
+  }
+  .actions{
+    display: flex !important;
+    
   }
