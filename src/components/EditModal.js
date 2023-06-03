@@ -51,10 +51,10 @@ function EditModal(props) {
  
  
   return <>
-    <Modal show={props.showFlag} onHide={props.handelclose} >
-      <Modal.Header closeButton>
+    <Modal show={props.showFlag} onHide={props.handelclose}  >
+      <Modal.Header closeButton className='modal-header'>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className='modal-body'>
         <Form  onSubmit={sendToDbHandler}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>task type</Form.Label>
@@ -75,7 +75,7 @@ function EditModal(props) {
 
       </Modal.Body>
 
-      <Modal.Footer>
+      <Modal.Footer className='modal-footer'>
         <Button variant="secondary" onClick={props.handelclose} >
           Close
         </Button>

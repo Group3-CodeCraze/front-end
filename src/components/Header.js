@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import Container from 'react-bootstrap/Container';
+// import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -20,7 +20,7 @@ function Header() {
   return (
     <>
       {/* nav bar colors change ! */}
-      <Navbar expand="sm" bg="dark" variant="dark">
+      <Navbar expand="md">
         <Navbar.Toggle
           aria-controls="navbarScroll"
           data-bs-toggle="collapse"
@@ -31,17 +31,17 @@ function Header() {
           {/* insert logo  */}
           
           <Navbar.Brand as={Link} to="/">
-          <Image src={logo} width={100} ></Image>
+          <Image src={logo} width={80} height={60} ></Image>
           </Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link  eventKey="1" as={Link} to="/" className={location.pathname === '/' ? 'active' : ''}>
               Home
             </Nav.Link>
-            <Nav.Link eventKey="2" as={Link} to="/RandomTask" className={location.pathname === '/RandomTask' ? 'active' : ''}>
-              Random Task
-            </Nav.Link>
             <Nav.Link eventKey="3" as={Link} to="/MyTasks" className={location.pathname === '/MyTasks' ? 'active' : ''}>
               My Tasks
+            </Nav.Link>
+            <Nav.Link eventKey="2" as={Link} to="/RandomTask" className={location.pathname === '/RandomTask' ? 'active' : ''}>
+              Random Task
             </Nav.Link>
             <Nav.Link eventKey="4" as={Link} to="/AboutUs" className={location.pathname === '/AboutUs' ? 'active' : ''}>
               About Us

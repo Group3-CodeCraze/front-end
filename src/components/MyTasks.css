@@ -1,20 +1,48 @@
 .tasks-H1 {
     margin-top: 2rem;
-    color: #333;
+    color: #ffffff;
     text-align: center;
 
 }
-.main-todo-container{
-    
-    background-color: rgb(154, 165, 177);
+
+.main-todo-container {
+
+    background-color: rgba(154, 165, 177, 0.58);
 }
-.MyTaskPage{
-    background-color: #edede9;
+
+.MyTaskPage {
+    background-color: #edede962;
 }
+
 .tasks {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.table th {
+    color: aliceblue;
+}
+
+.card-body {
+    background-color: #333333b7;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: -1px -1px 4px whitesmoke;
+
+}
+
+.rounded-3 {
+    border-radius: 10px !important;
+    background-color: #33333362 !important;
+    margin-top: 2% !important;
+}
+
+.row {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: center !important;
 }
 
 .tasks>div {
@@ -23,10 +51,12 @@
     max-width: 400px;
     transition: transform 0.3s;
 }
+
 .ripple {
-    background-color:  #526D82 !important;
+    background-color: #526D82 !important;
     font-size: 24px !important;
 }
+
 .card {
     width: 100%;
     color: black;
@@ -43,74 +73,188 @@
     transform: scale(1.05);
 }
 
-.mb-3{
+.mb-3 {
     text-align: left;
     margin-right: 10px;
 }
-.taskForm{
+
+.taskForm {
     background-color: transparent !important;
 }
 
-.taskCont{
+.taskCont {
     display: flex;
     justify-content: space-between;
     width: 100%;
     padding: 10px;
 }
 
-.trash{
-    color:#be1212;
+.trash {
+    color: #be1212;
 }
 
-.main-todo-container{
+.main-todo-container {
     height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 0 5px;
-    
+
 }
+
 .Calendar_box {
-    margin-bottom: 3rem;
+    margin-bottom: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: auto;
 }
-.Calendar_box{
-    width: 30% !important; 
+
+.Calendar_box {
+    width: 30% !important;
+}
+
+.input-group {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 6%;
 }
 
 .table-container {
-    max-height: 400px; /* Adjust the height as needed */
+    max-height: 400px;
+    /* Adjust the height as needed */
     overflow-y: auto;
-  }
-  
-  .completed {
-    color: green;
+    background-color: #333333;
+    border-radius: 10px;
+
+}
+
+.completed {
+    color: green !important;
     text-decoration: line-through;
-    
-  }
-  .task-content {
+
+}
+
+.task-content {
     font-size: 15px;
-  }
-  @media only screen and (max-width: 980px) {
+    color: aliceblue;
+}
+
+@media (max-width: 980px) {
     .main-todo-container {
-      flex-direction: column;
-      align-items: center;
-      height: auto;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
     }
-  }
-  .task-calendar-container {
-    height: 100%;
-    border: 1px solid #ccc;
+}
+
+.task-calendar-container {
+    height: auto;
     float: right;
     display: flex;
     justify-content: first baseline;
-    margin:60px 20px 30px 20px ;
-  }
-  .actions{
-    display: flex !important;
-    
-  }
+    margin-bottom: 10%;
+    padding-top: 12%;
+}
+
+td.actions {
+    display: flex;
+    border-bottom: none !important;
+    padding: 15% 10% !important;
+}
+
+.main-todo-container {
+    background-image: url(./backGroundMytasks.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    width: 100%;
+    /* height: 100vh; */
+}
+
+button.addbt {
+    --green: #1BFD9C;
+    font-size: 15px;
+    padding: 0.7em 2.7em;
+    letter-spacing: 0.06em;
+    position: relative;
+    font-family: inherit;
+    border-radius: 0.6em;
+    overflow: hidden;
+    transition: all 0.3s;
+    line-height: 1.4em;
+    border: 2px solid rgb(0, 157, 255);
+    background: linear-gradient(to right, rgba(155, 27, 253, 0.1) 1%, transparent 40%, transparent 60%, rgba(155, 27, 253, 0.1) 100%);
+    color: white;
+    box-shadow: inset 0 0 10px rgba(163, 27, 253, 0.4), 0 0 9px 3px rgba(185, 27, 253, 0.1);
+}
+
+button.addbt:hover {
+    color: rgb(0, 157, 255);
+    box-shadow: inset 0 0 10px rgba(140, 27, 253, 0.6), 0 0 9px 3px rgba(0, 217, 255, 0.2);
+}
+
+button.addbt:before {
+    content: "";
+    position: absolute;
+    left: -4em;
+    width: 4em;
+    height: 100%;
+    top: 0;
+    transition: transform .4s ease-in-out;
+    background: linear-gradient(to right, transparent 1%, rgba(27, 227, 253, 0.1) 40%, rgba(136, 27, 253, 0.1) 60%, transparent 100%);
+}
+
+button.addbt:hover:before {
+    transform: translateX(15em);
+}
+
+.modal-body {
+    background-color: whitesmoke;
+}
+
+form {
+    background-color: whitesmoke !important;
+}
+
+.modal-header {
+    background-color: rgb(228, 228, 228) !important;
+}
+
+.modal-footer {
+    background-color: rgb(228, 228, 228) !important;
+
+}
+
+.btn-secondary {
+    border: 1px solid rgb(22, 22, 150) !important;
+    transition: transform 0.3s, box-shadow 0.3s !important;
+}
+
+.btn-secondary:hover {
+    transform: scale(1.05) !important;
+    box-shadow: 0 0 10px skyblue !important;
+}
+
+
+/* .btn-primary {
+    background-color: #3b72cab9 ;
+    color: #fff;
+    box-shadow: 0 4px 9px -4px #5188e2, inset 0 0 10px rgb(243, 67, 243) !important;
+    transition: box-shadow 0.3s ease-in-out !important;
+}
+.btn-primary:hover {
+    box-shadow: 0 4px 9px -4px #5188e2, inset 0 0 10px rgb(243, 67, 243), 0 0 10px rgb(243, 67, 243) !important;
+  } */
+.btn-primary:hover {
+    box-shadow: 0 4px 9px -4px #5188e2, inset 0 0 10px rgb(67, 199, 243), 0 0 10px rgb(67, 190, 243) !important;
+    transform: scale(1.05);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 4px 9px -4px #5188e2, 0 0 10px rgb(67, 164, 243) !important;
+    transform: scale(1.05);
+}

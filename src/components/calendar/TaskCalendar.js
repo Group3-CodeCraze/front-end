@@ -105,11 +105,11 @@ const CalendarPage = () => {
 
   return (
     <Container className='Calendar_box'>
-      <Row>
+      {/* <Row>
         <Col>
           <h1 className='Calendar-Header'>Calendar</h1>
         </Col>
-      </Row>
+      </Row> */}
       <Row>
         <Col>
           <div className='task-calendar-container'>

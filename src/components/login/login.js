@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { AuthContext } from '../../AuthContext';
+import 'aos/dist/aos.css';
+import Aos from 'aos';
 
 function Login() {
 
@@ -73,6 +75,9 @@ function Login() {
   }
 
   useEffect(() => {
+    Aos.init({
+      duration: 3000, 
+    })
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
     const container2 = document.getElementById('container2');
@@ -101,7 +106,7 @@ function Login() {
 
   return (<>
     <div className="login">
-      <div className="container2" id="container2">
+      <div className="container2" id="container2" data-aos="fade-up">
         <div className="form-container2 sign-in-container2">
           <form onSubmit={handleSignIn}>
             {/* action="./login/login.php"  method="post" */}
@@ -168,7 +173,7 @@ function Login() {
             </div>
             <div className="overlay-panel overlay-right">
               <h1>Hello Friend!</h1>
-              <p className='pargraph'>Enter Your Personal Details and start your Enjoy! :)</p>
+              <p className='pargraph'>Enter Your Personal Details and start your Journey! :)</p>
               <button className="ghost" id="signUp">Sign Up</button>
             </div>
           </div>

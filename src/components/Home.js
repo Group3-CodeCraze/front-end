@@ -1,9 +1,7 @@
 
 import { useNavigate } from 'react-router-dom';
-import './BackGimag1-01.png'
-import './BackGimag2-01-01.png'
-import './BackGimag3-01.png'
-import Carousel from 'react-bootstrap/Carousel';
+
+// import Carousel from 'react-bootstrap/Carousel';
 import './Home.css';
 import React, { useContext } from 'react';
 import { AuthContext } from '../AuthContext';
@@ -18,8 +16,48 @@ function Home() {
     };
 
     return (
-        <>      
-            <Carousel slide={true} className='carousel' >
+        <>
+            <div className='home-page'>
+
+                <div className='text'>
+                    <h3>“Shoot for the <span className="text-stars">Stars</span>. Even if you miss, you'll land on the moon.”</h3>
+                    </div>               
+                <button className='main-button' onClick={handleClick}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span> Let's stars
+                </button>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {/* <Carousel slide={true} className='carousel' >
                 
                 <Carousel.Item>
                     <img
@@ -56,7 +94,7 @@ function Home() {
                         <button className='uniqBt' onClick={handleClick}>Let's Start</button>
                     </Carousel.Caption>
                 </Carousel.Item>
-            </Carousel>
+            </Carousel> */}
         </>
     );
 }

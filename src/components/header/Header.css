@@ -10,30 +10,42 @@
 
 .navbar,
 .navbar .nav-link {
-    color: #f2f2f2;
+    color: #f2f2f2 !important;
     font-size: 1.3rem;
     font-weight: 500;
 }
-
-.nav-link {
+/* .nav-link {
     margin-left: 3rem !important;
-}
+}  */
 
 .collapse {
     margin-left: 3rem;
 }
 
 .navbar {
-    background: linear-gradient(to right, #7C9695, #516868, #BECFCE);
-
+    /* background: linear-gradient(to right, #7C9695, #516868, #BECFCE); */
+background-color: #1b1b1bc4;
+color: #f2f2f2 !important;
 }
 .custom-toggle {
     background-color: #7C9695; /* Replace with your desired color */
   }
   
   .custom-toggle .navbar-toggler-icon {
-    background-color: white; /* Replace with your desired color */
+    background-color: white !important; /* Replace with your desired color */
     width: 20px; /* Adjust the width as needed */
     height: 2px; /* Adjust the height as needed */
     display: block;
   }
+  @media (max-width:140px) {
+    .navbar{
+        width: 150px;
+    }
+    
+  }
+  .navbar-toggler {
+    border: 2px solid !important;
+    border-image: linear-gradient(to right, blue, purple) !important;
+    border-image-slice: 1 !important;
+    margin-left: 5% !important;
+}
