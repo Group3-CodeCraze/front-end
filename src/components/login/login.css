@@ -234,11 +234,8 @@ form {
 }
 
 .overlay {
-	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	/* background: linear-gradient(to right, #FF4B2B, #FF416C); */
-	/* background-image: linear-gradient(to right, #27374D, #526D82); */
-   background-color: #333;
+	
+   background-color: #2e2e2e;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
