@@ -100,7 +100,7 @@ function MyTasks() {
   useEffect(() => {
 
     Aos.init({
-      duration:3000, 
+      duration:2000, 
     })
 
     setUpdatedData(tasks);

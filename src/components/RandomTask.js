@@ -1,12 +1,13 @@
 import './RandomTask.css';
 import axios from "axios";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import Form from 'react-bootstrap/Form';
 import TaskModel from "./TaskModel";
 import './RandomTask.css';
 import { useContext} from "react";
-
+import 'aos/dist/aos.css';
+import Aos from 'aos';
 import { AuthContext } from "../AuthContext";
 
 
@@ -65,12 +66,17 @@ function RandomTask() {
                 console.log(error);
             });
     };
+    useEffect(() => {
+
+        Aos.init({
+          duration:2000, 
+        }); },[]);
 
     return (
         <>
-            <div  id='form'>
+            <div  id='form' >
             <Form onSubmit={genTask} className='randomForm'>
-                <div className='dropdown-container'>
+                <div className='dropdown-container' data-aos="fade-down">
                     <select onChange={handelSelectedValue} aria-label="Default select example" className='select'>
                         <option value="none">Please select a type</option>
                         <option value="music">music</option>

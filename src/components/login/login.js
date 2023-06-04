@@ -76,7 +76,7 @@ function Login() {
 
   useEffect(() => {
     Aos.init({
-      duration: 3000, 
+      duration: 2000, 
     })
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('signIn');
